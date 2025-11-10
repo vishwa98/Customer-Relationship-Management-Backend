@@ -72,11 +72,13 @@ DB_HOST=localhost
 DB_PORT=5432
 DB_USERNAME=postgres_username
 DB_PASSWORD=postgres_password
-DB_DATABASE=postgres_db_name
+DB_DATABASE=crm_db
 
 PORT=3000
 NODE_ENV=development
 TYPEORM_LOGGING=true
+
+FRONTEND_URL=FRONTEND_URL_FOR_CORS 
 ```
 
 4. Create the PostgreSQL database:
@@ -284,7 +286,7 @@ The application uses centralized error handling middleware that:
 | `DB_PORT` | Database port | `5432` |
 | `DB_USERNAME` | Database username | `postgres_username` |
 | `DB_PASSWORD` | Database password | `postgres_password` |
-| `DB_DATABASE` | Database name | `postgres_db_name` |
+| `DB_DATABASE` | Database name | `crm_db` |
 | `PORT` | Server port | `3000` |
 | `NODE_ENV` | Environment (development/production) | `development` |
 | `TYPEORM_LOGGING` | Enable TypeORM logging | `true` |
