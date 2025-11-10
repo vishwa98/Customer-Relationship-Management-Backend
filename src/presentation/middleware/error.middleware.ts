@@ -3,7 +3,7 @@ import { CustomerNotFoundError } from '../../domain/errors/CustomerNotFoundError
 import { EmailAlreadyExistsError } from '../../domain/errors/EmailAlreadyExistsError';
 
 export function errorMiddleware(error: Error, req: Request, res: Response, _next: NextFunction) {
-  // Handle known domain errors
+  // Handle Customer not found error
   if (error instanceof CustomerNotFoundError) {
     return res.status(404).json({
       error: 'Customer not found',
@@ -11,6 +11,7 @@ export function errorMiddleware(error: Error, req: Request, res: Response, _next
     });
   }
 
+  // Handle Email already exists error
   if (error instanceof EmailAlreadyExistsError) {
     return res.status(409).json({
       error: 'Email already exists',
