@@ -1,8 +1,10 @@
 import express, { Application } from 'express';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
 import 'reflect-metadata';
 import customerRoutes from './routes/customer.routes';
 import { errorMiddleware } from './middleware/error.middleware';
+import { swaggerSpec } from './config/swagger.config';
 
 export function createApp(): Application {
   const app = express();
@@ -49,10 +51,31 @@ export function createApp(): Application {
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
 
+  // Swagger UI
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+
   // Routes
   app.use('/api', customerRoutes);
 
-  // Health check endpoint
+  /**
+   * @swagger
+   * /health:
+   *   get:
+   *     summary: Health check endpoint
+   *     tags: [Health]
+   *     description: Check if the API is running
+   *     responses:
+   *       200:
+   *         description: API is healthy
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: object
+   *               properties:
+   *                 status:
+   *                   type: string
+   *                   example: ok
+   */
   app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok' });
   });

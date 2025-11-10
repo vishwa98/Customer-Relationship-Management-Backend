@@ -6,6 +6,7 @@ A RESTful API for managing customer accounts built with Node.js, TypeScript, Exp
 
 - **CRUD Operations**: Create, Read, Update, and Delete customer accounts
 - **Search Functionality**: Search customers by email or country
+- **API Documentation**: Interactive Swagger/OpenAPI documentation
 - **Clean Architecture**: Separation of concerns with domain, application, infrastructure, and presentation layers
 - **Dependency Injection**: Using tsyringe for loose coupling
 - **Request Validation**: Zod schemas for type-safe request validation
@@ -105,6 +106,20 @@ The server will start on `http://localhost:3000` (or the port specified in your 
 npm run build
 npm start
 ```
+
+## API Documentation
+
+### Swagger UI
+Interactive API documentation is available at `/api-docs` when the server is running.
+
+**Access the documentation:**
+- Development: `http://localhost:3000/api-docs`
+
+The Swagger UI provides:
+- Interactive API documentation
+- Try-it-out functionality for all endpoints
+- Request/response schemas
+- Error response examples
 
 ## API Endpoints
 
