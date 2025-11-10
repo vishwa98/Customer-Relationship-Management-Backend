@@ -1,0 +1,62 @@
+---
+alwaysApply: true
+---
+
+#Project Overview
+
+This project is built using:
+- Node.js 20
+- TypeScript (latest)
+- Express
+- TypeORM
+- PostgreSQL
+- Clean Architecture principles
+
+#Architecture Rules
+
+- Use Clean Architecture layering:
+  - `domain/` → entities, repository interfaces (no framework imports)
+  - `application/` → use-cases (business logic and validation)
+  - `infrastructure/` → TypeORM entities, repository implementations, and DB config
+  - `presentation/` → Express routes, controllers, middleware, DTO validation
+- Never import from `infrastructure` or `presentation` inside `domain` or `application`.
+- Use tsyringe Dependency injection library
+
+#Coding Standards
+
+- Always use modern TypeScript.
+- Do not use `any`; prefer explicit types or generics.
+- Maintain consistent naming:
+  - Classes: PascalCase
+  - Functions and variables: camelCase
+- Follow ESLint + Prettier rules; generated code must pass `npm run lint`.
+- Clean, readable, type-safe and well-documented code.
+- Follow RESTful API design principles.
+
+#Repository Pattern
+
+- Define repository **interfaces** under `domain/repositories/`.
+- Implement repositories using TypeORM under `infrastructure/repositories/`.
+- Repositories must convert between ORM entities and domain entities.
+
+#Service Layer (Use Cases)
+
+- Each use-case (CreateCustomer, UpdateCustomer, etc.) should live in its own file in `application/services/`.
+- Perform all business validation inside the service layer.
+- Inject repositories via constructors; never create them directly.
+
+#Error Handling & Validation
+
+- Use centralized Express error middleware (`presentation/middleware/error.middleware.ts`).
+- Validate requests using Zod DTOs in the `presentation/dto/` directory.
+- No stack traces or raw errors in production responses.
+
+#Testing
+
+- Configure Vitest for unit testing
+- Write unit tests using Vitest for:
+    - Service layer business logic
+    - Repository layer data operations
+    - API endpoint handlers
+- Run unit tests
+- Verify all tests pass.

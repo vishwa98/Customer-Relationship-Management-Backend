@@ -1,0 +1,57 @@
+{
+  "name": "customer-relationship-management-backend",
+  "version": "1.0.0",
+  "description": "Customer CRUD Application with Clean Architecture",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint . --ext .ts",
+    "lint:fix": "eslint . --ext .ts --fix",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "migration:generate": "typeorm-ts-node-commonjs migration:generate src/infrastructure/database/migrations/Migration -d src/infrastructure/database/data-source.ts",
+    "migration:run": "typeorm-ts-node-commonjs migration:run -d src/infrastructure/database/data-source.ts",
+    "migration:revert": "typeorm-ts-node-commonjs migration:revert -d src/infrastructure/database/data-source.ts"
+  },
+  "keywords": [
+    "customer",
+    "crm",
+    "typescript",
+    "clean-architecture"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.1.13",
+    "tsyringe": "^4.8.0",
+    "typeorm": "^0.3.17",
+    "uuid": "^9.0.1",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.10.6",
+    "@types/pg": "^8.10.9",
+    "@types/uuid": "^9.0.7",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "@vitest/coverage-v8": "^1.1.1",
+    "@vitest/ui": "^1.1.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "prettier": "^3.1.1",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.1"
+  }
+}
